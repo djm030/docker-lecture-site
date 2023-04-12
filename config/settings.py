@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "django.contrib.sites",
     # Custom apps
-    
+    "users.apps.UsersConfig",
+    "lectures.apps.LecturesConfig",
 
     # Third-party apps
     "corsheaders",
