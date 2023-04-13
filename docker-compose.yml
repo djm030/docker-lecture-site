@@ -7,9 +7,7 @@ services:
       dockerfile: Dockerfile
     container_name: django_container
     volumes:
-      - /root/server/django:/app
-      
-      - ./app/static:/static
+      - static_volume:/app/static
     command: ["gunicorn", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
     networks:
       - my_network
@@ -22,11 +20,14 @@ services:
     depends_on:
       - django
     volumes:
-      - /root/server/static:/app/static
+      - static_volume:/app/static
       - /root/server/nginx:/etc/nginx/conf.d
     networks:
       - my_network
 
 networks:
-    my_network:
-      driver: bridge
+  my_network:
+    driver: bridge
+
+volumes:
+  static_volume:
