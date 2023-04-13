@@ -5,4 +5,4 @@ FROM nginx:latest
 RUN rm /etc/nginx/conf.d/default.conf
 
 # Nginx 설정 파일을 복사합니다.
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx.conf /etc/nginx/conf.d/nginx.conf

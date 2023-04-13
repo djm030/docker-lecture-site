@@ -6,15 +6,14 @@ services:
       context: /root/server/django
       dockerfile: Dockerfile
     container_name: django_container
-    ports:
-      - "8000:8000"
     volumes:
       - /root/server/django:/app
+      
+      - ./app/static:/static
     command: ["gunicorn", "--bind", "0.0.0.0:8000", "config.wsgi:application"]
     networks:
       - my_network
     
-
   nginx:
     build: /root/server/nginx
     container_name: nginx_container
@@ -23,12 +22,11 @@ services:
     depends_on:
       - django
     volumes:
-    - /root/server/static:/app/static
-    - /root/server/nginx:/etc/nginx/conf.d
+      - /root/server/static:/app/static
+      - /root/server/nginx:/etc/nginx/conf.d
     networks:
       - my_network
 
 networks:
     my_network:
       driver: bridge
-    
